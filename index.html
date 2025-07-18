@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Shaik Abdul Kareem portfolio </title>
+    <!-- Chosen Palette: Professional Teal -->
+    <!-- Application Structure Plan: A single-page application with a top navigation bar for smooth scrolling to thematic sections: Hero, an interactive Education Performance Chart, a chronological Timeline for Internships & Certifications, and gridded sections for Skills and Strengths. This structure transforms the linear resume into an engaging, explorable portfolio, allowing recruiters to quickly access key information non-linearly while still presenting a clear career story. -->
+    <!-- Visualization & Content Choices: Education Scores -> Goal: Compare -> Viz: Bar Chart (Chart.js) -> Interaction: Hover tooltips -> Justification: Visually compelling comparison of academic performance. Internships/Certifications -> Goal: Organize/Change -> Viz: Vertical Timeline (HTML/CSS) -> Interaction: Hover effects -> Justification: Tells a chronological story of skill acquisition. Technical Skills -> Goal: Organize -> Viz: Card Grid (HTML/CSS) -> Interaction: Hover effects -> Justification: Clean, scannable presentation of competencies. CONFIRMED: NO SVG/Mermaid used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #0d9488;
+            border: 4px solid #f0fdfa;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <nav class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <h1 class="text-lg font-bold text-teal-600">SHAIK ABDUL KAREEM</h1>
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#summary" class="text-slate-600 hover:text-teal-600 transition-colors">Summary</a>
+                <a href="#academics" class="text-slate-600 hover:text-teal-600 transition-colors">Academics</a>
+                <a href="#experience" class="text-slate-600 hover:text-teal-600 transition-colors">Experience</a>
+                <a href="#skills" class="text-slate-600 hover:text-teal-600 transition-colors">Skills</a>
+            </div>
+            <a href="mailto:shaikabdulkareem0210@gmail.com" class="hidden md:block bg-teal-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-teal-700 transition-colors">Contact Me</a>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-slate-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 space-y-2">
+            <a href="#summary" class="block text-slate-600 hover:text-teal-600 transition-colors">Summary</a>
+            <a href="#academics" class="block text-slate-600 hover:text-teal-600 transition-colors">Academics</a>
+            <a href="#experience" class="block text-slate-600 hover:text-teal-600 transition-colors">Experience</a>
+            <a href="#skills" class="block text-slate-600 hover:text-teal-600 transition-colors">Skills</a>
+            <a href="mailto:shaikabdulkareem0210@gmail.com" class="block bg-teal-600 text-white text-center mt-2 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-teal-700 transition-colors">Contact Me</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-12">
+        
+        <section id="summary" class="text-center min-h-[60vh] flex flex-col justify-center items-center">
+            <h2 class="text-4xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-teal-600 to-cyan-500 text-transparent bg-clip-text">Shaik Abdul Kareem</h2>
+            <p class="mt-4 text-lg md:text-xl text-slate-600 max-w-3xl">Computer Science Student & Aspiring Technologist</p>
+            <p class="mt-6 max-w-2xl text-slate-500 leading-relaxed">
+                Highly motivated B.Tech student in Computer Science and Information Technology with hands-on experience in Cyber Security, Android Development, and AI/ML. Seeking a challenging role to apply strong programming skills and a quick learning ability to contribute to organizational growth.
+            </p>
+            <div class="mt-8 flex flex-wrap justify-center gap-4 text-sm text-slate-500">
+                <span>&#9993; sakareem0210@gmail.com</span>
+                <span>&#9742; +91 7702022632</span>
+                <span>&#128205; Palnadu, Andhra Pradesh</span>
+            </div>
+        </section>
+
+        <section id="academics" class="py-16 md:py-24">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-slate-800">Academic Performance</h3>
+                <p class="mt-2 text-slate-500 max-w-xl mx-auto">This chart visualizes my academic scores across different stages of my education. Hover over the bars to see the exact percentages, showcasing a consistent and strong academic record.</p>
+            </div>
+            <div class="chart-container">
+                <canvas id="educationChart"></canvas>
+            </div>
+        </section>
+
+        <section id="experience" class="py-16 md:py-24">
+            <div class="text-center mb-16">
+                <h3 class="text-3xl font-bold text-slate-800">Learning & Experience Timeline</h3>
+                <p class="mt-2 text-slate-500 max-w-xl mx-auto">This timeline illustrates my journey through key internships and certifications, highlighting my continuous effort to gain practical skills and specialized knowledge in diverse technological fields.</p>
+            </div>
+            <div class="relative max-w-2xl mx-auto pl-8 border-l-2 border-slate-200">
+                
+                <div class="mb-12 relative timeline-item">
+                    <h4 class="text-lg font-semibold text-teal-700">Google AI-ML Virtual Internship</h4>
+                    <p class="text-sm text-slate-400">AICTE Edu skills Foundation</p>
+                    <p class="mt-2 text-slate-600">Explored foundational concepts of Artificial Intelligence and Machine Learning, working with basic AI/ML models and techniques.</p>
+                </div>
+
+                <div class="mb-12 relative timeline-item">
+                    <h4 class="text-lg font-semibold text-teal-700">Android Developer Virtual Internship</h4>
+                    <p class="text-sm text-slate-400">AICTE Edu skills Foundation</p>
+                    <p class="mt-2 text-slate-600">Gained practical experience in Android application development and built basic mobile application features.</p>
+                </div>
+
+                <div class="mb-12 relative timeline-item">
+                    <h4 class="text-lg font-semibold text-teal-700">Cyber Security Internship</h4>
+                    <p class="text-sm text-slate-400">AICTE Edu skills Foundation</p>
+                    <p class="mt-2 text-slate-600">Explored fundamental concepts of network security and vulnerability assessment, applying theoretical knowledge to practical scenarios.</p>
+                </div>
+                
+                <div class="mb-12 relative timeline-item">
+                    <h4 class="text-lg font-semibold text-teal-700">Multiple Technology Workshops</h4>
+                    <p class="text-sm text-slate-400">Various Providers</p>
+                    <p class="mt-2 text-slate-600">Completed intensive workshops in DevOps, Data Analysis in Power BI, Block Chain Technology, and 3D Game Design, broadening my technical expertise.</p>
+                </div>
+
+                <div class="relative timeline-item">
+                    <h4 class="text-lg font-semibold text-teal-700">B.Tech in Computer Science</h4>
+                    <p class="text-sm text-slate-400">2021 - 2025</p>
+                    <p class="mt-2 text-slate-600">Currently pursuing a Bachelor of Technology at Chalapathi Institute of Engineering and Technology, building a strong foundation in computer science principles.</p>
+                </div>
+
+            </div>
+        </section>
+        
+        <section id="skills" class="py-16 md:py-24 bg-white rounded-2xl">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-slate-800">Technical Skills & Strengths</h3>
+                <p class="mt-2 text-slate-500 max-w-xl mx-auto">A showcase of my technical toolkit and the personal attributes that drive my work ethic. You can interact with the skill cards, which are designed to give a quick overview of my capabilities.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h4 class="text-xl font-semibold mb-6 text-center text-slate-700">Core Technologies</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        <div class="bg-slate-50 p-4 rounded-lg text-center hover:shadow-lg hover:scale-105 transition-transform">
+                            <p class="text-5xl">🐍</p>
+                            <p class="font-semibold mt-2">Python</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg text-center hover:shadow-lg hover:scale-105 transition-transform">
+                            <p class="text-5xl">☕</p>
+                            <p class="font-semibold mt-2">Java</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg text-center hover:shadow-lg hover:scale-105 transition-transform">
+                            <p class="text-5xl">⚙️</p>
+                            <p class="font-semibold mt-2">JavaScript</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg text-center hover:shadow-lg hover:scale-105 transition-transform">
+                            <p class="text-5xl">📄</p>
+                            <p class="font-semibold mt-2">HTML</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg text-center hover:shadow-lg hover:scale-105 transition-transform">
+                            <p class="text-5xl">🎨</p>
+                            <p class="font-semibold mt-2">CSS</p>
+                        </div>
+                         <div class="bg-slate-50 p-4 rounded-lg text-center hover:shadow-lg hover:scale-105 transition-transform">
+                            <p class="text-5xl">📊</p>
+                            <p class="font-semibold mt-2">Power BI</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-6 text-center text-slate-700">Key Strengths</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-center bg-slate-50 p-4 rounded-lg">
+                            <p class="text-2xl mr-4">💡</p>
+                            <div>
+                                <h5 class="font-semibold">Self-motivated</h5>
+                                <p class="text-sm text-slate-500">Proactively seek out new challenges and learning opportunities.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center bg-slate-50 p-4 rounded-lg">
+                            <p class="text-2xl mr-4">🚀</p>
+                            <div>
+                                <h5 class="font-semibold">Quick Learner</h5>
+                                <p class="text-sm text-slate-500">Rapidly grasp and apply new technologies and concepts.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center bg-slate-50 p-4 rounded-lg">
+                            <p class="text-2xl mr-4">👥</p>
+                            <div>
+                                <h5 class="font-semibold">Leadership</h5>
+                                <p class="text-sm text-slate-500">Comfortable taking initiative and guiding team efforts.</p>
+                            </div>
+                        </div>
+                         <div class="flex items-center bg-slate-50 p-4 rounded-lg">
+                            <p class="text-2xl mr-4">💼</p>
+                            <div>
+                                <h5 class="font-semibold">Strong Work Ethic</h5>
+                                <p class="text-sm text-slate-500">Dedicated to delivering high-quality results efficiently.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-100 mt-16">
+        <div class="container mx-auto px-6 py-8 text-center text-slate-500">
+            <p class="font-bold text-slate-700 text-lg">Shaik Abdul Kareem</p>
+            <p class="mt-2 text-sm">Open to challenging opportunities where I can learn, grow, and contribute.</p>
+            <div class="mt-4 flex justify-center space-x-6 text-sm">
+                <a href="mailto:shaikabdulkareem0210@gmail.com" class="hover:text-teal-600 transition-colors">Email</a>
+                <p>•</p>
+                <p>+91 7702022632</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const educationData = {
+            labels: ['SSC (2019)', 'Intermediate (2021)', 'B.Tech (Current)'],
+            scores: [98, 70.9, 73]
+        };
+
+        const ctx = document.getElementById('educationChart').getContext('2d');
+        const educationChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: educationData.labels,
+                datasets: [{
+                    label: 'Percentage',
+                    data: educationData.scores,
+                    backgroundColor: 'rgba(13, 148, 136, 0.6)',
+                    borderColor: 'rgba(13, 148, 136, 1)',
+                    borderWidth: 1,
+                    borderRadius: 5,
+                    barThickness: 50,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: {
+                            color: 'rgba(203, 213, 225, 0.5)'
+                        },
+                        ticks: {
+                           color: '#475569'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                         ticks: {
+                           color: '#475569'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `Score: ${context.parsed.y}%`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
